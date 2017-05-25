@@ -4,5 +4,6 @@ var db = require('../index.js')
 
 
 module.exports = db.define('user', {
-  name: Sequelize.STRING,
+    name: Sequelize.STRING,
+    email: Sequelize.STRING
 })
