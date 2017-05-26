@@ -23,9 +23,7 @@ export default class HomeContainer extends Component {
             campuses: [],
             selectedCampus: null,
             formOption: 'addCampus',
-            editMode: null,
-            rerenderToggle: 0
-
+            editMode: null
         };
 
         this.onCampusesClick = this.onCampusesClick.bind(this);
@@ -39,6 +37,7 @@ export default class HomeContainer extends Component {
         this.onEditCampusSubmit = this.onEditCampusSubmit.bind(this);
         this.onEditStudentSubmit = this.onEditStudentSubmit.bind(this);
         this.onSelectOption = this.onSelectOption.bind(this);
+        this.setCampuses = this.setCampuses.bind(this);
     }
 
     componentDidMount () {
@@ -86,7 +85,9 @@ export default class HomeContainer extends Component {
             })
             .catch(console.error);
 
-        this.setState({rerenderToggle: Math.random()});
+        alert("New Student Added!");
+
+        store.dispatch(getAllCampuses());
     }
 
     // =========add a campus===========
@@ -112,10 +113,10 @@ export default class HomeContainer extends Component {
             })
             .catch(console.error);
 
-        forceUpdate();
-        this.setState({rerenderToggle: Math.random()});
+        store.dispatch(getAllCampuses());
 
         alert("New Campus Added!");
+
     }
 
     //=====delete a student =====//
@@ -124,7 +125,9 @@ export default class HomeContainer extends Component {
         axios.delete(`api/students/${studentId}`)
             .then(res => res.data)
             .catch(console.error);
-        this.setState({rerenderToggle: Math.random()});
+
+        store.dispatch(getAllCampuses());
+        alert(student.name + " is deleted:(");
     }
 
     //=====delete a campus =====//
@@ -137,7 +140,9 @@ export default class HomeContainer extends Component {
         axios.delete(`api/campuses/${campustId}`)
             .catch(console.error);
 
-        this.setState({rerenderToggle: Math.random()});
+        store.dispatch(getAllCampuses());
+
+        // alert(campus.name + " is deleted:(");
     }
 
     //======Edit campus========//
@@ -212,6 +217,13 @@ export default class HomeContainer extends Component {
         this.setState({editMode: null});
     }
 
+    setCampuses (){
+        // store.dispatch(getAllCampuses());
+        axios.get('/api/campuses')
+            .then(res => res.data)
+            .then(campuses => this.setState({campuses:campuses}))
+            .catch(console.error);
+    }
 
 
 
@@ -235,6 +247,7 @@ export default class HomeContainer extends Component {
                               onDeleteCampus={this.onDeleteCampus}
                               onEditcampus={this.onEditcampus}
                               onEditStudent={this.onEditStudent}
+                              setCampuses={this.setCampuses}
                         />
                         :(
                             <EditForm

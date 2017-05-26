@@ -20,6 +20,7 @@ const Home = (props) => {
                     onDeleteCampus={props.onDeleteCampus}
                     onEditCampus={props.onEditcampus}
                     editMode={props.editMode}
+                    setCampuses={props.setCampuses}
                 />)
 
                     :(<Campus
