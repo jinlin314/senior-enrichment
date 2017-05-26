@@ -3,7 +3,8 @@ import {LIST_STUDENTS,
     GET_STUDENT,
     ADD_STUDENT,
     DELETE_STUDENT,
-    EDIT_STUDENT
+    EDIT_STUDENT,
+    GET_STUDENTS_FOR_CAMPUS
 } from '../constants';
 
 import axios from 'axios';
@@ -33,6 +34,13 @@ export const add_student = student => ({
     student
 });
 
+export const get_students_for_campus = campus_students => {
+    return{
+        type: GET_STUDENTS_FOR_CAMPUS,
+        campus_students: campus_students
+    }
+};
+
 
 // ========== dispatch actions ============ //
 
@@ -53,3 +61,23 @@ export const getStudentById = studentId => {
             });
     };
 };
+
+export const getStudentForCampus = campusId => {
+    return dispatch => {
+        axios.get(`/api/campuses/${campusId}/students`)
+            .then(response => response.data)
+            .then(students => {
+                dispatch(get_students_for_campus(students))
+            })
+            .catch(console.error);
+    };
+};
+
+export const addStudent = studentInfo => {
+    return dispatch => {
+        const name = studentInfo.name;
+        const email = studentInfo.email;
+
+        axios.post(`/api/students`)
+    }
+}

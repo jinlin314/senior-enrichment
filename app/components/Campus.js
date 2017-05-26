@@ -1,23 +1,31 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import List from './List';
 
 const Campus = (props) => {
     return (
 
             <div className="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                <div class="jumbotron">
-                    <h1>Grace Hopper Campuses</h1>
-                    <p>Explore our campuses below, meet our current instructors and students...</p>
+                <div>
+                    <h1>{props.campus.name} Campus</h1>
+                    <p>meet our current instructors and students...</p>
                 </div>
 
-                <div className="row">
-                    <img src="img/mars.svg" className="img-circle img-responsive col-lg-5 col-md-4 col-sm-6 col-xs-12"/>
-                    <img src="img/terra.svg" className="img-circle img-responsive col-lg-5 col-md-4 col-sm-6 col-xs-12"/>
-                </div>
-                <div className="row">
-                    <img src="img/luna.svg" className="img-circle img-responsive col-lg-5 col-md-4 col-sm-6 col-xs-12"/>
-                    <img src="img/titan.svg" className="img-circle img-responsive col-lg-5 col-md-4 col-sm-6 col-xs-12"/>
-                </div>
+                <section>
+
+                    <div id="btn-group" className="button-group">
+                        <button type="button" className="btn btn-primary">Instuctors</button>
+                        <button type="button" className="btn btn-primary">Students</button>
+                        <button type="button" className="btn btn-primary">+</button>
+                    </div>
+
+                </section>
+
+                <List
+                    students={props.students }
+                    onDeleteStudent={props.onDeleteStudent}
+
+                />
             </div>
 
     );

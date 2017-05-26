@@ -14,7 +14,9 @@ h2, h4{
 body {
     background-image: url(http://kreativo.se/backlogin.jpg);
     font-family: "Helvetica Neue", Helvetica, Arial;
+}
 
+#trashIcon {
 }
 
 .container {

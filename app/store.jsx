@@ -1,5 +1,5 @@
 import {createStore, combineReducers} from 'redux';
-import loggerMiddleware from 'redux-logger';
+import createLogger from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import studentReducer from './reducers/student-reducer';
 import campusReducer from './reducers/campus-reducer'
@@ -10,8 +10,9 @@ const applyMiddleware = require('redux').applyMiddleware;
 
 const reducer = combineReducers({
     students: studentReducer,
-    campuses: campusReducer,
-    instructors: instructorReducer
+    campuses: campusReducer
+
+    // instructors: instructorReducer
 });
 
-export default createStore(reducer, applyMiddleware(loggerMiddleware, thunkMiddleware));
+export default createStore(reducer, applyMiddleware(createLogger(), thunkMiddleware));

@@ -4,9 +4,10 @@ export const GO_HOME = 'GO_HOME';
 
 export const LIST_CAMPUSES = 'LIST_CAMPUSES';
 export const GET_CAMPUS = 'GET_CAMPUS';
-export const CREATE_CAMPUS = 'CREATE_CAMPUS';
+export const ADD_CAMPUS = 'CREATE_CAMPUS';
 export const DELETE_CAMPUS = 'DELET_CAMPUS';
 export const EDIT_CAMPUS = 'EDIT_CAMPUS';
+export const GET_STUDENTS_FOR_CAMPUS = 'GET_STUDENTS_FOR_CAMPUS';
 
 export const LIST_STUDENTS = 'LIST_STUDENTS';
 export const GET_STUDENT = 'GET_STUDENT';
