@@ -15,19 +15,24 @@ const List = (props) => {
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td width="85%">
+                                                <td width="70%">
                                                     <h3>
                                                         {student.name}
                                                     </h3>
                                                 </td>
-                                                <td>
+                                                <td width="15%">
                                                     <a onClick={()=>props.onDeleteStudent(student)} href="#" className="btn btn-info btn-lg">
-                                                        <span id="trashIcon" className="glyphicon glyphicon-trash"></span> Trash
+                                                        <span id="trashIcon" className="glyphicon glyphicon-trash"></span>
+                                                    </a>
+                                                </td>
+                                                <td width="15%">
+                                                    <a onClick={()=>props.onEditStudent(student)} href="#" className="btn btn-info btn-lg">
+                                                        <span id="trashIcon" className="glyphicon glyphicon-edit"></span>
                                                     </a>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td rowSpan="2"><h5>{student.email}</h5></td>
+                                                <td rowSpan="3"><h5>{student.email}</h5></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -38,10 +43,6 @@ const List = (props) => {
                             )
                         })
                     }
-                    {/*<li className="list-group-item list-group-item-success">Jin Lin</li>*/}
-                    {/*<li className="list-group-item list-group-item-info">YiLing Jian</li>*/}
-                    {/*<li className="list-group-item list-group-item-warning">Karen</li>*/}
-                    {/*<li className="list-group-item list-group-item-danger">Dan</li>*/}
                 </ul>
             </div>
         </div>

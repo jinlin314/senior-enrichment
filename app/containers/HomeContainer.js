@@ -1,6 +1,7 @@
 
 import React, {Component} from 'react';
 import Home from '../components/Home';
+import EditForm from '../components/EditForm';
 import Sidebar from '../components/Sidebar';
 import {connect} from 'react-redux';
 import {getAllStudents} from '../action-creators/students';
@@ -20,7 +21,9 @@ export default class HomeContainer extends Component {
             instructors: [],
             campus: null,
             campuses: [],
-            addOption: 'campus',
+            selectedCampus: null,
+            formOption: 'addCampus',
+            editMode: null,
             rerenderToggle: 0
 
         };
@@ -31,6 +34,11 @@ export default class HomeContainer extends Component {
         this.onAddCampusSubmit = this.onAddCampusSubmit.bind(this);
         this.onDeleteStudent = this.onDeleteStudent.bind(this);
         this.onDeleteCampus = this.onDeleteCampus.bind(this);
+        this.onEditcampus = this.onEditcampus.bind(this);
+        this.onEditStudent = this.onEditStudent.bind(this);
+        this.onEditCampusSubmit = this.onEditCampusSubmit.bind(this);
+        this.onEditStudentSubmit = this.onEditStudentSubmit.bind(this);
+        this.onSelectOption = this.onSelectOption.bind(this);
     }
 
     componentDidMount () {
@@ -45,15 +53,15 @@ export default class HomeContainer extends Component {
 
     onCampusesClick(campus){
         this.setState({campus: campus});
-        this.setState({addOption: 'student'});
+        this.setState({formOption: 'addStudent'});
         store.dispatch(getStudentForCampus(campus.id));
 
     }
 
     onHomeClick(){
         this.setState({campus: null});
-        this.setState({addOption: 'campus'});
-        console.log("Home button clicked");
+        this.setState({editMode: null});
+        this.setState({formOption: 'addCampus'});
     }
 
     onAddStudentSubmit(event){
@@ -61,7 +69,11 @@ export default class HomeContainer extends Component {
         const studentName = event.target.name.value;
         const studentEmail = event.target.email.value;
         const campusId = parseInt(event.target.campusId.value);
-        //const img = event.target.img.value;
+
+        if(!studentName || !studentEmail){
+            alert('student Name and Email can not be empty');
+            return;
+        }
 
         const studentInfo = {name: studentName,
                              email: studentEmail,
@@ -85,7 +97,10 @@ export default class HomeContainer extends Component {
         // const imgUrl = event.target.email.value;
         const imgUrl = "img/logo.jpg";
 
-        console.log(">>>>add campus button clicked + ", campusName, imgUrl);
+        if(!campusName){
+            alert('campus Name can not be empty');
+            return;
+        }
 
         const campusInfo = {name: campusName,
                             imgUrl: imgUrl};
@@ -97,7 +112,10 @@ export default class HomeContainer extends Component {
             })
             .catch(console.error);
 
+        forceUpdate();
         this.setState({rerenderToggle: Math.random()});
+
+        alert("New Campus Added!");
     }
 
     //=====delete a student =====//
@@ -112,11 +130,86 @@ export default class HomeContainer extends Component {
     //=====delete a campus =====//
     onDeleteCampus (campus){
         var campustId = campus.id
+        axios.delete(`api/students/all/${campustId}`)
+            .then(()=>console.log('students deleted'))
+            .catch(console.error);
+
         axios.delete(`api/campuses/${campustId}`)
-            .then(res => res.data)
             .catch(console.error);
 
         this.setState({rerenderToggle: Math.random()});
+    }
+
+    //======Edit campus========//
+    onEditcampus (campus){
+        console.log('this is edit campus click handler');
+        this.setState({campus: campus});
+        this.setState({editMode: 'editCampus'});
+    }
+
+    onEditCampusSubmit (event){
+
+        event.preventDefault();
+
+        var campusId = this.state.campus.id;
+        var campusName = event.target.name.value;
+        if(!event.target.imgUrl){
+            var imgUrl = this.campus.imgUrl;
+        }
+
+
+        var campusInfo = {name: campusName,
+            imgUrl: imgUrl};
+
+        axios.put(`/api/campuses/${campusId}`, campusInfo)
+            .then(res => res.data)
+            .then(campus => {
+                console.log("campus updated: ", campus);
+            })
+            .catch(console.error);
+
+        this.setState({campus: null});
+        this.setState({editMode: null});
+
+        alert("Campus Info Updated!");
+    }
+
+    //======Edit student========//
+    onEditStudent (student){
+        console.log('this is edit student click handler');
+        this.setState({student: student});
+        this.setState({editMode: 'editStudent'});
+    }
+
+    onSelectOption (event){
+        console.log(">>>>>",event.target);
+        this.setState({selectedCampus: event.target.value});
+        console.log('selected campus = ', this.state.selectedCampus);
+    }
+
+    onEditStudentSubmit (event){
+        console.log("this is edit student submit handler");
+
+        event.preventDefault();
+        const studentName = event.target.name.value;
+        const studentEmail = event.target.email.value;
+        //const campusId = parseInt(event.target.campus.key);
+        const campusId = this.state.selectedCampus;
+
+
+        const studentInfo = {name: studentName,
+            email: studentEmail,
+            campusId: campusId};
+
+        axios.put(`/api/students/${this.state.student.id}`, studentInfo)
+            .then(res => res.data)
+            .then(student => {
+                console.log("student updated: ", student);
+            })
+            .catch(console.error);
+
+        this.setState({student: null});
+        this.setState({editMode: null});
     }
 
 
@@ -125,18 +218,39 @@ export default class HomeContainer extends Component {
     render(){
         return (
             <div>
-                <Home student={this.state.student}
-                      campus={this.state.campus}
-                      students={this.state.students}
-                      campuses={this.state.campuses}
-                      addOption={this.state.addOption}
-                      onCampusesClick={this.onCampusesClick}
-                      onHomeClick={this.onHomeClick}
-                      onAddStudentSubmit={this.onAddStudentSubmit}
-                      onAddCampusSubmit={this.onAddCampusSubmit}
-                      onDeleteStudent={this.onDeleteStudent}
-                      onDeleteCampus={this.onDeleteCampus}
-                />
+
+                {
+                    (!this.state.editMode)?
+                        <Home student={this.state.student}
+                              campus={this.state.campus}
+                              students={this.state.students}
+                              campuses={this.state.campuses}
+                              formOption={this.state.formOption}
+                              editMode={this.state.editMode}
+                              onCampusesClick={this.onCampusesClick}
+                              onHomeClick={this.onHomeClick}
+                              onAddStudentSubmit={this.onAddStudentSubmit}
+                              onAddCampusSubmit={this.onAddCampusSubmit}
+                              onDeleteStudent={this.onDeleteStudent}
+                              onDeleteCampus={this.onDeleteCampus}
+                              onEditcampus={this.onEditcampus}
+                              onEditStudent={this.onEditStudent}
+                        />
+                        :(
+                            <EditForm
+                                editMode={this.state.editMode}
+                                campus={this.state.campus}
+                                campuses={this.state.campuses}
+                                student={this.state.student}
+                                onHomeClick={this.onHomeClick}
+                                onEditStudentSubmit={this.onEditStudentSubmit}
+                                onEditCampusSubmit={this.onEditCampusSubmit}
+                                onSelectOption={this.onSelectOption}
+                            />
+                    )
+                }
+
+
 
             </div>
         )

@@ -101,6 +101,8 @@ campusRouter.put('/:campusId', (req, res, next) => {
     var name = req.body.name;
     var imgUrl = req.body.imgUrl;
 
+    console.log(">>>>inside campus put route: ", campusId, name, imgUrl);
+
     if (!campusId){
         var err = new Error("Not a valid id");
         err.status = 500;
@@ -114,6 +116,8 @@ campusRouter.put('/:campusId', (req, res, next) => {
                 err.status = 404;
                 next(err);
             }else{
+                console.log(">>>>inside campus put route: foundCampus", campus);
+
                 if (name){
                     campus.name = name;
                 }

@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import Campus from '../components/Campus';
 import Campuses from '../components/Campuses';
+import EditForm from '../components/EditForm';
 
 
 const Home = (props) => {
@@ -14,25 +15,33 @@ const Home = (props) => {
 
             {
                 (!props.campus) ? (<Campuses
-                                    campuses={props.campuses}
-                                    onCampusesClick={props.onCampusesClick}
-                                    onDeleteCampus={props.onDeleteCampus}
-                                />)
+                    campuses={props.campuses}
+                    onCampusesClick={props.onCampusesClick}
+                    onDeleteCampus={props.onDeleteCampus}
+                    onEditCampus={props.onEditcampus}
+                    editMode={props.editMode}
+                />)
 
-                            :(<Campus
-                                    campus={props.campus}
-                                    students={props.students}
-                                    onDeleteStudent={props.onDeleteStudent}
-                                />)
+                    :(<Campus
+                    campus={props.campus}
+                    students={props.students}
+                    onDeleteStudent={props.onDeleteStudent}
+                    onEditStudent={props.onEditStudent}
+                    editMode={props.editMode}
+                />)
             }
 
-            <Sidebar
+            (<Sidebar
                 onAddStudentSubmit={props.onAddStudentSubmit}
                 onAddCampusSubmit={props.onAddCampusSubmit}
+                onEditStudentSubmit={props.onEditStudentSubmit}
+                onEditCampusSubmit={props.onEditCampusSubmit}
                 campuses={props.campuses}
                 campus={props.campus}
-                addOption={props.addOption}
-            />
+                formOption={props.formOption}
+            />)
+
+
         </div>
 
     )

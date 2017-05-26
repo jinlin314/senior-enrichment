@@ -4,14 +4,15 @@ import AddCampusForm from '../components/AddCampusForm';
 import List from '../components/List';
 
 const Sidebar = (props) => {
-    console.log('sidebar props: ', props);
+   // console.log('sidebar props: ', props);
+
     return (
         <div className="col-lg-2 col-md-4 col-sm-12 col-xs-12">
             <sidebar>
 
                 <section>
                     {
-                        (props.addOption==='campus')?
+                        (props.formOption==='addCampus')?
                             (<AddCampusForm
                                 onAddCampusSubmit={props.onAddCampusSubmit}
                             />):

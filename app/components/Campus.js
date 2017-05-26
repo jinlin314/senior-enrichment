@@ -24,7 +24,7 @@ const Campus = (props) => {
                 <List
                     students={props.students }
                     onDeleteStudent={props.onDeleteStudent}
-
+                    onEditStudent={props.onEditStudent}
                 />
             </div>
 

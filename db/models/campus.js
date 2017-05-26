@@ -9,6 +9,7 @@ module.exports = db.define('campus', {
 },{
     hooks:{
         beforeDestroy:function(){
+            console.log(">>>is hook invoked?")
             Student.destroy({
                 where:{
                     campusId: this.id

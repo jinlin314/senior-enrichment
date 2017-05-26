@@ -22,9 +22,13 @@ const Campuses = (props) => {
                                 </a>
                                 <div className="caption">
 
-                                        <a onClick={()=>props.onDeleteCampus(campus)} href="#" className="btn btn-info btn-lg">
-                                            <span id="trashIcon" className="glyphicon glyphicon-trash"></span>{campus.name}
-                                        </a>
+                                    <a onClick={()=>props.onDeleteCampus(campus)} href="#" className="btn btn-info btn-lg">
+                                        <span id="trashIcon" className="glyphicon glyphicon-trash"></span>
+                                    </a>
+
+                                    <a onClick={()=>props.onEditCampus(campus)} href="#" className="btn btn-info btn-lg">
+                                        <span id="trashIcon" className="glyphicon glyphicon-edit"></span>{campus.name}
+                                    </a>
 
                                 </div>
                             </div>
