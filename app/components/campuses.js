@@ -17,7 +17,6 @@ export default class Campuses extends Component{
         let currentCampuses = this.props.campuses;
         let nextCampuese = nextProps.campuses;
         if (! _.isEqual(currentCampuses, nextCampuese)){
-            console.log('*****did campuses changed?')
             this.props.setCampuses();
         }
 

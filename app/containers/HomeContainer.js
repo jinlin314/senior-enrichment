@@ -115,7 +115,7 @@ export default class HomeContainer extends Component {
 
         store.dispatch(getAllCampuses());
 
-        alert("New Campus Added!");
+       // alert("New Campus Added!");
 
     }
 
