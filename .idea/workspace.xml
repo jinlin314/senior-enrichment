@@ -19,16 +19,15 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HomeContainer.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HomeContainer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/containers/HomeContainer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="117" column="9" lean-forward="false" selection-start-line="117" selection-start-column="9" selection-end-line="117" selection-end-column="9" />
+            <state relative-caret-position="66">
+              <caret line="3" column="46" lean-forward="false" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
               <folding>
-                <element signature="e#1#40#0" expanded="true" />
-                <marker date="1495825761000" expanded="true" signature="8019:8047" ph="..." />
-                <marker date="1495825761000" expanded="true" signature="8019:8739" ph="..." />
-                <marker date="1495825761000" expanded="true" signature="8113:8677" ph="..." />
+                <marker date="1495828604000" expanded="true" signature="9605:9633" ph="..." />
+                <marker date="1495828604000" expanded="true" signature="9605:10325" ph="..." />
+                <marker date="1495828604000" expanded="true" signature="9699:10263" ph="..." />
               </folding>
             </state>
           </provider>
@@ -48,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="campuses.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="campuses.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/components/campuses.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="18" column="56" lean-forward="false" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="56" />
+            <state relative-caret-position="267">
+              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -73,7 +72,7 @@
       <file leaf-file-name="Form.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/components/Form.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
+            <state relative-caret-position="184">
               <caret line="15" column="76" lean-forward="false" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="76" />
               <folding />
             </state>
@@ -171,8 +170,8 @@
         <option value="$PROJECT_DIR$/app/components/EditCampus.js" />
         <option value="$PROJECT_DIR$/app/components/Home.js" />
         <option value="$PROJECT_DIR$/app/components/Campuses.js" />
-        <option value="$PROJECT_DIR$/app/containers/HomeContainer.js" />
         <option value="$PROJECT_DIR$/app/components/campuses.js" />
+        <option value="$PROJECT_DIR$/app/containers/HomeContainer.js" />
       </list>
     </option>
   </component>
@@ -563,7 +562,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81611000" />
+    <option name="totallyTimeSpent" value="82966000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="809" extended-state="6" />
@@ -851,6 +850,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="158">
           <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -858,6 +858,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="55" lean-forward="false" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -897,6 +900,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="736">
           <caret line="32" column="9" lean-forward="true" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -923,14 +927,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/Form.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="76" lean-forward="false" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/Home.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="406">
@@ -951,25 +947,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/containers/HomeContainer.js">
+    <entry file="file://$PROJECT_DIR$/app/components/campuses.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="117" column="9" lean-forward="false" selection-start-line="117" selection-start-column="9" selection-end-line="117" selection-end-column="9" />
+        <state relative-caret-position="267">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding>
-            <element signature="e#1#40#0" expanded="true" />
-            <marker date="1495825761000" expanded="true" signature="8019:8047" ph="..." />
-            <marker date="1495825761000" expanded="true" signature="8019:8739" ph="..." />
-            <marker date="1495825761000" expanded="true" signature="8113:8677" ph="..." />
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/campuses.js">
+    <entry file="file://$PROJECT_DIR$/app/components/Form.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="18" column="56" lean-forward="false" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="56" />
+        <state relative-caret-position="184">
+          <caret line="15" column="76" lean-forward="false" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/containers/HomeContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="46" lean-forward="false" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <marker date="1495828604000" expanded="true" signature="9605:9633" ph="..." />
+            <marker date="1495828604000" expanded="true" signature="9605:10325" ph="..." />
+            <marker date="1495828604000" expanded="true" signature="9699:10263" ph="..." />
           </folding>
         </state>
       </provider>

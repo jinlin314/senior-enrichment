@@ -9,10 +9,6 @@ export default class Campuses extends Component{
         super()
     }
 
-    // componentDidMount () {
-    //     this.props.setCampuses();
-    // }
-
     componentWillReceiveProps(nextProps){
         let currentCampuses = this.props.campuses;
         let nextCampuese = nextProps.campuses;
@@ -21,8 +17,6 @@ export default class Campuses extends Component{
         }
 
     }
-
-
 
 
     render(){

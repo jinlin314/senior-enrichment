@@ -2,8 +2,6 @@
 import React, {Component} from 'react';
 import Home from '../components/Home';
 import EditForm from '../components/EditForm';
-import Sidebar from '../components/Sidebar';
-import {connect} from 'react-redux';
 import {getAllStudents} from '../action-creators/students';
 import {getAllCampuses} from '../action-creators/campuses';
 import {getStudentForCampus} from '../action-creators/students';
@@ -50,6 +48,10 @@ export default class HomeContainer extends Component {
         this.unsubscribe()
     }
 
+    // click on one of the campuses,
+    // set the state campus to selected campus, when state.campus is not null,
+    // it will render the single campus component
+    // set the forOption to 'addStudent', side bar will render the add student form for selected campus
     onCampusesClick(campus){
         this.setState({campus: campus});
         this.setState({formOption: 'addStudent'});
@@ -57,12 +59,17 @@ export default class HomeContainer extends Component {
 
     }
 
+    //click Home button on the navbar, set campus=null, editMode=null,
+    // this will re-render the home to all campuses page
+    // set the form option to 'addCampus', side bar will render add campus form
     onHomeClick(){
         this.setState({campus: null});
         this.setState({editMode: null});
         this.setState({formOption: 'addCampus'});
     }
 
+    // using the backend api route to add new student to db,
+    // the student info is obtained from the form
     onAddStudentSubmit(event){
         event.preventDefault();
         const studentName = event.target.name.value;
@@ -91,6 +98,10 @@ export default class HomeContainer extends Component {
     }
 
     // =========add a campus===========
+    // using the backend api route to add new campus to db,
+    // the campus info is obtained from the form
+    // dispatch the getAllCampus action to update the campuses state
+
     onAddCampusSubmit (event){
         event.preventDefault();
 
@@ -115,10 +126,10 @@ export default class HomeContainer extends Component {
 
         store.dispatch(getAllCampuses());
 
-       // alert("New Campus Added!");
-
     }
 
+
+    // using backend route to delete targeted student
     //=====delete a student =====//
     onDeleteStudent (student){
         var studentId = student.id
@@ -130,7 +141,10 @@ export default class HomeContainer extends Component {
         alert(student.name + " is deleted:(");
     }
 
+
     //=====delete a campus =====//
+    // before delete the targeted campus, delete all its associated students first
+
     onDeleteCampus (campus){
         var campustId = campus.id
         axios.delete(`api/students/all/${campustId}`)
@@ -145,12 +159,19 @@ export default class HomeContainer extends Component {
         // alert(campus.name + " is deleted:(");
     }
 
+
     //======Edit campus========//
+    // click on the edit button, set the campus to seleted campus
+    // set the editMode to editCampus, so the DOM will render edit campus form
+
     onEditcampus (campus){
-        console.log('this is edit campus click handler');
         this.setState({campus: campus});
         this.setState({editMode: 'editCampus'});
     }
+
+    // call backend put route to update a campus, get the new info from the form
+    // after updated, set the campus and editMode to null, this will trigger DOM to
+    // re-render campuses component
 
     onEditCampusSubmit (event){
 
@@ -161,7 +182,6 @@ export default class HomeContainer extends Component {
         if(!event.target.imgUrl){
             var imgUrl = this.campus.imgUrl;
         }
-
 
         var campusInfo = {name: campusName,
             imgUrl: imgUrl};
@@ -180,18 +200,18 @@ export default class HomeContainer extends Component {
     }
 
     //======Edit student========//
+    // click on the edit button, set the campus to seleted student
+    // set the editMode to editCampus, so the DOM will render edit campus form
+
     onEditStudent (student){
         console.log('this is edit student click handler');
         this.setState({student: student});
         this.setState({editMode: 'editStudent'});
     }
 
-    onSelectOption (event){
-        console.log(">>>>>",event.target);
-        this.setState({selectedCampus: event.target.value});
-        console.log('selected campus = ', this.state.selectedCampus);
-    }
-
+    // call backend put route to update a student, get the new info from the form
+    // after updated, set the student and editMode to null, this will trigger DOM
+    // to re-render campus component
     onEditStudentSubmit (event){
         console.log("this is edit student submit handler");
 
@@ -217,6 +237,10 @@ export default class HomeContainer extends Component {
         this.setState({editMode: null});
     }
 
+
+    // re-set the campuses state, used in the componentWillReceiveProps in campuses component
+    // so the DOM will auto re-render after change is made
+
     setCampuses (){
         // store.dispatch(getAllCampuses());
         axios.get('/api/campuses')
@@ -226,7 +250,9 @@ export default class HomeContainer extends Component {
     }
 
 
-
+// if the editMode is null, render the Home Component,
+// which will render navbar, campuses page, sidebar by default
+// else, render the Edit component, depend on the editMode, it will render the corresponding form
     render(){
         return (
             <div>
